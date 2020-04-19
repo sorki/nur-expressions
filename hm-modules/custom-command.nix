@@ -105,7 +105,7 @@ in {
         Create a custom command based on a description
 
         This will create a toplevel script which is able
-        to find and executs its subcommands.
+        to find and executes its subcommands.
 
         It provides a quick way to define ad-hoc command line interfaces.
 
