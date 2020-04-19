@@ -130,8 +130,14 @@ in {
             pretty ="cat $1 | pretty-derivation";
             diff ="nix-diff $1 $2";
           };
+          edit = "nix edit nixpkgs.$1";
         };
         nixos.rebuild = "nixos-rebuild switch";
+        nixpkgs = rec {
+          pin = "nix-prefetch-url --unpack https://github.com/NixOS/nixpkgs/archive/$1.tar.gz";
+          pinHEAD = "nixpkgs pin $( git rev-parse HEAD )";
+          prefetch = pin;
+        };
       };
     };
   };
