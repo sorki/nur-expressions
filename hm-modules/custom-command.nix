@@ -122,9 +122,14 @@ in {
         nih = rec {
           build = "nix-build -A $1";
           eval = "nix eval '(with (import <nixpkgs> {}); $1)'";
+          # nih ec 20.03 hello.version
+          ec = "nix eval -f channel:nixos-$1 $2";
+          gc = "nix-collect-garbage -d";
           store = {
             add = "nix-store --add $1";
             ping = "nix ping-store";
+            realise = "nix-store  --realise $1";
+            inherit gc;
           };
           repl = "nix repl";
           r = repl;
