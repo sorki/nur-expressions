@@ -141,6 +141,21 @@ in {
           pinHEAD = "nixpkgs pin $( git rev-parse HEAD )";
           prefetch = pin;
         };
+        ca = rec {
+          c2n = ''
+            f=$( echo *.cabal | cut -d'.' -f1 )
+            test -f "$f.cabal" || { echo "No .cabal file found"; return 1; }
+            cabal2nix . > $f.nix
+          '';
+          build = "cabal build";
+          b = build;
+          test = "cabal test";
+          t = test;
+          vtest = "cabal test --test-show-details=always";
+          vt = vtest;
+          repl = "cabal repl";
+          r = repl;
+        };
       };
     };
   };
