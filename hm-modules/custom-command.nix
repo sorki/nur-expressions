@@ -119,18 +119,21 @@ in {
           args = "echo $@";
           a = args;
         };
-        nih = {
+        nih = rec {
           build = "nix-build -A $1";
           eval = "nix eval '(with (import <nixpkgs> {}); $1)'";
           store = {
             add = "nix-store --add $1";
             ping = "nix ping-store";
           };
+          repl = "nix repl";
+          r = repl;
           drv = {
             pretty ="cat $1 | pretty-derivation";
             diff ="nix-diff $1 $2";
           };
           edit = "nix edit nixpkgs.$1";
+          e = edit;
         };
         nixos.rebuild = "nixos-rebuild switch";
         nixpkgs = rec {
