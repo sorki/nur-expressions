@@ -127,9 +127,15 @@ in {
           gc = "nix-collect-garbage -d";
           store = {
             add = "nix-store --add $1";
+            inherit gc;
             ping = "nix ping-store";
             realise = "nix-store  --realise $1";
-            inherit gc;
+            size = ''
+              for i in $( nix-store -q -R /run/current-system ); do
+                s="$( nix-store -q --size $i )"
+                echo $s $i
+              done | sort -n | awk '{ print $1 / 1024 / 1024, "MB", $2 }'
+            '';
           };
           repl = "nix repl";
           r = repl;
