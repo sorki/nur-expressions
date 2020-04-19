@@ -11,6 +11,6 @@
   };
 
   config = {
-    warnings = lib.singleton (lib.traceSeq config.debug.trace "Trace");
+    warnings = lib.traceSeq config.debug.trace [];
   };
 }
