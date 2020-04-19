@@ -131,7 +131,7 @@ in {
             ping = "nix ping-store";
             realise = "nix-store  --realise $1";
             size = ''
-              for i in $( nix-store -q -R /run/current-system ); do
+              for i in $( nix-store -q -R $1 ); do
                 s="$( nix-store -q --size $i )"
                 echo $s $i
               done | sort -n | awk '{ print $1 / 1024 / 1024, "MB", $2 }'
