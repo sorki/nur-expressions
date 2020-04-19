@@ -124,6 +124,12 @@ in {
           eval = "nix eval '(with (import <nixpkgs> {}); $1)'";
           # nih ec 20.03 hello.version
           ec = "nix eval -f channel:nixos-$1 $2";
+          fetch = {
+            url = "nix-prefetch-url $@";
+            git = "nix-prefetch-git $@";
+          };
+          f = fetch;
+          prefetch = fetch;
           gc = "nix-collect-garbage -d";
           store = {
             add = "nix-store --add $1";
