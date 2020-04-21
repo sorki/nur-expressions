@@ -49,7 +49,7 @@ let
     }
 
     if [ "''${selector}" == "" ]; then
-      echo "Comnad not specified"
+      echo "Command not specified"
       listAll
       exit 1
     fi
@@ -76,7 +76,7 @@ let
         if [ "$next" == "$prev" ]; then break; fi
         prev=''${next}
       done
-      echo "Comnad not found"
+      echo "Command not specified"
       listAll
       exit 1
     fi
