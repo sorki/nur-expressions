@@ -9,6 +9,4 @@
     modules = builtins.attrValues rawModules;
     rawModules = import ./hm-modules;
   };
-
-  # example-package = pkgs.callPackage ./pkgs/example-package { };
 }

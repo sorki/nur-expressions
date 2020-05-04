@@ -1,6 +1,5 @@
-{
-  # Add your NixOS modules here
-  #
-  # my-module = ./my-module;
+rec {
+  zre = ./zre.nix;
+  all = [ zre ];
 }
 
