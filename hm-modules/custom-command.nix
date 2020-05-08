@@ -185,6 +185,6 @@ in {
 
   config = {
     home.file = toHM binaries;
-    debug.trace = binaries;
+    # debug.trace = binaries;
   };
 }
