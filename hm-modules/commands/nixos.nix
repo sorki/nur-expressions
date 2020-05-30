@@ -1,0 +1,3 @@
+{
+  rebuild = "nixos-rebuild switch";
+}
