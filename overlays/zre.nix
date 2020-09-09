@@ -3,9 +3,10 @@ let
   src = super.fetchFromGitHub {
     owner = "sorki";
     repo = "haskell-zre";
-    rev = "3414e003c3664ed27a7c91f71554a95b603ee27c";
-    sha256 = "0k5mzpf753aqac88zjyahcv3mpmr8ybzvv72cch02pc6y2s799sn";
+    rev = "f11201c1f4122909ed97f787232f28d48aeab225";
+    sha256 = "1j9hp88bhh7c44a0cbkmd6w2m077j4a4g7h6f2y8ndkrfymkm3yf";
   };
+  srcX = ~/git/haskell-zre;
 in {
   haskellPackages = super.haskellPackages.override (old: {
     overrides = super.lib.composeExtensions (old.overrides or (_: _: { }))
