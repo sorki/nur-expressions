@@ -17,7 +17,7 @@
 * (`git-post-receive`)[https://github.com/sorki/git-post-receive]
 * (`zre`)[https://github.com/sorki/haskell-zre]
 
-And few more with pending PRs.
+And few more with pending PRs or my WIP packages.
 
 ### NixOS modules
 

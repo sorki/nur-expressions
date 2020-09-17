@@ -1,12 +1,13 @@
 self: super:
 let
-  # https://github.com/stepcut/ircbot/pull/3
+  # until 0.6.6+ is released
   src = super.fetchFromGitHub {
-    owner = "sorki";
+    owner = "stepcut";
     repo = "ircbot";
-    rev = "bc0999b1632265c7aac34e3cee74602e949622a2";
-    sha256 = "1h5q3mh0kai98d5g73zl5dn2vi2kzbzxd36m0dk985h615kqcqjl";
+    rev = "e0dee3607ae837b0fc9980e163ed98c25312ca15";
+    sha256 = "01zbija3c4nmqv7zv70h1dq9ggsl5jpdfclcxbj53b0f9wn7fl1p";
   };
+  srcX = ~/git/ircbot;
 in {
   haskellPackages = super.haskellPackages.override (old: {
     overrides = super.lib.composeExtensions (old.overrides or (_: _: { }))

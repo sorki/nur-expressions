@@ -12,4 +12,10 @@ in {
     overrides = super.lib.composeExtensions (old.overrides or (_: _: { }))
       (import "${src}/overlay.nix");
   });
+
+  ghcjs = super.haskell.packages.ghcjs.override (old: {
+    overrides = super.lib.composeExtensions (old.overrides or (_: _: { }))
+      (import "${src}/overlay.nix");
+  });
+
 }
