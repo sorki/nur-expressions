@@ -21,4 +21,5 @@ And few more with pending PRs or my WIP packages.
 
 ### NixOS modules
 
+* `ircbridge`
 * `zre`

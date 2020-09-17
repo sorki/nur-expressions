@@ -1,5 +1,16 @@
 rec {
+  amqp = ./amqp.nix;
+  charybdis = ./charybdis.nix;
+  emci = ./emci.nix;
+  ircbridge = ./ircbridge.nix;
   zre = ./zre.nix;
-  all = [ zre ];
+
+  all = [
+    amqp
+    charybdis
+    emci
+    ircbridge
+    zre
+  ];
 }
 
