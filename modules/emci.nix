@@ -33,7 +33,7 @@ in
       description = "emci initialization";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      path = [ pkgs.haskellPackages.emci ];
+      path = [ pkgs.haskellPackages.emci pkgs.nix pkgs.git ];
       script = ''
         emci -c ${cfg.conf} mirror init
       '';
@@ -50,7 +50,7 @@ in
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" "emci-init.target" ];
       requires = [ "emci-init.target" ];
-      path = [ pkgs.haskellPackages.emci ];
+      path = [ pkgs.haskellPackages.emci pkgs.nix pkgs.git ];
       script = ''
         emci -c ${cfg.conf} mirror update
       '';
