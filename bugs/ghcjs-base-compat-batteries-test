@@ -1,0 +1,25 @@
+uncaught exception in Haskell thread: ReferenceError: h$realloc is not defined
+ReferenceError: h$realloc is not defined
+    at h$$acE (/build/base-compat-batteries-0.10.5/dist/build/spec/spec:64225:13)
+    at h$runThreadSlice (/build/base-compat-batteries-0.10.5/dist/build/spec/spec:6782:11)
+    at h$runThreadSliceCatch (/build/base-compat-batteries-0.10.5/dist/build/spec/spec:6757:12)
+    at Immediate.h$mainLoop [as _onImmediate] (/build/base-compat-batteries-0.10.5/dist/build/spec/spec:6752:9)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+/build/base-compat-batteries-0.10.5/dist/build/spec/spec:6384
+      h$currentThread.interruptible = true;
+                                    ^
+
+TypeError: Cannot set property 'interruptible' of null
+    at h$killThread (/build/base-compat-batteries-0.10.5/dist/build/spec/spec:6384:37)
+    at h$resolveDeadlocks (/build/base-compat-batteries-0.10.5/dist/build/spec/spec:4661:13)
+    at h$gc (/build/base-compat-batteries-0.10.5/dist/build/spec/spec:4408:5)
+    at h$scheduler (/build/base-compat-batteries-0.10.5/dist/build/spec/spec:6621:17)
+    at Timeout.h$mainLoop (/build/base-compat-batteries-0.10.5/dist/build/spec/spec:6731:9)
+    at ontimeout (timers.js:436:11)
+    at tryOnTimeout (timers.js:300:5)
+    at listOnTimeout (timers.js:263:5)
+    at Timer.processTimers (timers.js:223:10)
+Test suite spec: FAIL
+

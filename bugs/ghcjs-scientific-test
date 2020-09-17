@@ -1,0 +1,227 @@
+scientific
+  DoS protection
+    Eq
+      1e1000000:                        OK
+    Ord
+      compare 1234e1000000 123e1000001: OK
+    RealFrac
+      floor
+        1e1000000:                      OK
+        -1e-1000000:                    OK
+        1e-1000000:                     OK
+      ceiling
+        1e1000000:                      OK
+        -1e-1000000:                    OK
+        1e-1000000:                     OK
+      round
+        1e1000000:                      OK
+        -1e-1000000:                    OK
+        1e-1000000:                     OK
+      truncate
+        1e1000000:                      OK
+        -1e-1000000:                    OK
+        1e-1000000:                     OK
+      properFracton
+        1e1000000:                      OK
+        -1e-1000000:                    OK
+        1e-1000000:                     OK
+    toRealFloat
+      1e1000000:                        OK
+      1e-1000000:                       OK
+    toBoundedInteger
+      1e1000000:                        OK
+  normalization
+    smallcheck:                         OK (0.11s)
+      81 tests completed (but 9 did not meet the condition)
+    quickcheck:                         OK (0.13s)
+      +++ OK, passed 100 tests; 26 discarded.
+  Binary
+    decode . encode == id
+      smallcheck:                       OK (0.03s)
+        81 tests completed
+      quickcheck:                       OK (0.20s)
+        +++ OK, passed 100 tests.
+  Parsing
+    reads "":                           OK
+    reads "1.":                         OK
+    reads "1.2e":                       OK
+    reads "(1.3 )":                     OK
+    reads "((1.3))":                    OK
+    reads " 1.3":                       OK
+    read " ( ((  -1.0e+3 ) ))":         OK
+    scientificP "3":                    OK
+    scientificP "3.0e2":                OK
+    scientificP "+3.0e+2":              OK
+    scientificP "-3.0e-2":              OK
+  Formatting
+    read . show == id
+      smallcheck:                       OK (0.02s)
+        81 tests completed
+      quickcheck:                       OK (0.08s)
+        +++ OK, passed 100 tests.
+    toDecimalDigits
+      laws
+        smallcheck:                     OK (0.02s)
+          45 tests completed
+        quickcheck:                     OK (0.09s)
+          +++ OK, passed 100 tests.
+      == Numeric.floatToDigits
+        smallcheck:                     OK (0.03s)
+          19 tests completed
+        quickcheck:                     OK (0.25s)
+          +++ OK, passed 100 tests.
+    Builder
+      Text
+        smallcheck:                     OK (0.04s)
+          81 tests completed
+        quickcheck:                     OK (0.05s)
+          +++ OK, passed 100 tests.
+      ByteString
+        smallcheck:                     OK (0.02s)
+          81 tests completed
+        quickcheck:                     OK (0.11s)
+          +++ OK, passed 100 tests.
+    formatScientific_fromFloatDigits
+      smallcheck:                       OK (0.03s)
+        37 tests completed
+      quickcheck:                       OK (0.16s)
+        +++ OK, passed 100 tests.
+  Eq
+    ==
+      smallcheck:                       OK (1.44s)
+        6561 tests completed
+      quickcheck:                       OK (1.67s)
+        +++ OK, passed 100 tests.
+    s == s
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+  Ord
+    compare
+      smallcheck:                       OK (1.00s)
+        6561 tests completed
+      quickcheck:                       OK (3.99s)
+        +++ OK, passed 100 tests.
+  Num
+    Equal to Rational
+      fromInteger
+        smallcheck:                     OK
+          11 tests completed
+        quickcheck:                     OK
+          +++ OK, passed 100 tests.
+      +
+        smallcheck:                     OK (1.22s)
+          6561 tests completed
+        quickcheck:                     OK (8.00s)
+          +++ OK, passed 100 tests.
+      -
+        smallcheck:                     OK (1.23s)
+          6561 tests completed
+        quickcheck:                     OK (9.26s)
+          +++ OK, passed 100 tests.
+      *
+        smallcheck:                     OK (1.09s)
+          6561 tests completed
+        quickcheck:                     OK (6.93s)
+          +++ OK, passed 100 tests.
+      abs
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK (1.36s)
+          +++ OK, passed 100 tests.
+      negate
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK (1.74s)
+          +++ OK, passed 100 tests.
+      signum
+        smallcheck:                     OK
+          81 tests completed
+        quickcheck:                     OK (1.08s)
+          +++ OK, passed 100 tests.
+    0 identity of +
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK (48.78s)
+        +++ OK, passed 100 tests.
+    1 identity of *
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    0 identity of *
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    associativity of +
+      smallcheck:                       OK (80.28s)
+        531441 tests completed
+      quickcheck:                       OK (190.39s)
+        +++ OK, passed 100 tests.
+    commutativity of +
+      smallcheck:                       OK (0.61s)
+        6561 tests completed
+      quickcheck:                       OK (4.49s)
+        +++ OK, passed 100 tests.
+    distributivity of * over +
+      smallcheck:                       OK (53.20s)
+        531441 tests completed
+      quickcheck:                       OK (53.44s)
+        +++ OK, passed 100 tests.
+    subtracting the addition
+      smallcheck:                       OK (0.64s)
+        6561 tests completed
+      quickcheck:                       OK (74.82s)
+        +++ OK, passed 100 tests.
+    + and negate
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    - and negate
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+    abs . negate == id
+      smallcheck:                       OK
+        45 tests completed
+      quickcheck:                       OK
+        +++ OK, passed 100 tests.
+  Real
+    fromRational . toRational == id
+      smallcheck:                       OK
+        81 tests completed
+      quickcheck:
+<--- Last few GCs --->
+
+[505:0x19beab0]   583218 ms: Mark-sweep 1364.6 (1457.9) -> 1359.4 (1457.9) MB, 96.7 / 0.0 ms  (average mu = 0.148, current mu = 0.045) allocation failure scavenge might not succeed
+[505:0x19beab0]   583322 ms: Mark-sweep 1364.6 (1457.9) -> 1361.2 (1457.9) MB, 101.4 / 0.0 ms  (average mu = 0.097, current mu = 0.029) allocation failure scavenge might not succeed
+
+
+<--- JS stacktrace --->
+
+==== JS stack trace =========================================
+
+    0: ExitFrame [pc: 0x3df037edbe1d]
+    1: StubFrame [pc: 0x3df037e934b0]
+Security context: 0x219b2251e6e9 <JSObject>
+    2: h$$aKl [0x34c9e6fcf981] [/build/scientific-0.3.6.2/dist/build/test-scientific/test-scientific:~91931] [pc=0x3df03821ef0e](this=0x03579ae8d461 <JSGlobal Object>)
+    3: h$runThreadSlice [0xadb3f46bbf9] [/build/scientific-0.3.6.2/dist/build/test-scientific/test-scientific:~6774] [pc=0x3df03811eeaa](this=0x03579ae8d4...
+
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+ 1: 0x8447e8 node::Abort() [/nix/store/24gch2y4icg4myc86knsrd8cgif0rpgv-nodejs-10.19.0/bin/node]
+ 2: 0x844831  [/nix/store/24gch2y4icg4myc86knsrd8cgif0rpgv-nodejs-10.19.0/bin/node]
+ 3: 0xa33782 v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [/nix/store/24gch2y4icg4myc86knsrd8cgif0rpgv-nodejs-10.19.0/bin/node]
+ 4: 0xa33a28 v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [/nix/store/24gch2y4icg4myc86knsrd8cgif0rpgv-nodejs-10.19.0/bin/node]
+ 5: 0xdf1fa2  [/nix/store/24gch2y4icg4myc86knsrd8cgif0rpgv-nodejs-10.19.0/bin/node]
+ 6: 0xe03979 v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [/nix/store/24gch2y4icg4myc86knsrd8cgif0rpgv-nodejs-10.19.0/bin/node]
+ 7: 0xe0426c v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [/nix/store/24gch2y4icg4myc86knsrd8cgif0rpgv-nodejs-10.19.0/bin/node]
+ 8: 0xe06315 v8::internal::Heap::AllocateRawWithLigthRetry(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment) [/nix/store/24gch2y4icg4myc86knsrd8cgif0rpgv-nodejs-10.19.0/bin/node]
+ 9: 0xe06361 v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationSpace, v8::internal::AllocationAlignment) [/nix/store/24gch2y4icg4myc86knsrd8cgif0rpgv-nodejs-10.19.0/bin/node]
+10: 0xdd0916 v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationSpace) [/nix/store/24gch2y4icg4myc86knsrd8cgif0rpgv-nodejs-10.19.0/bin/node]
+11: 0x106ddea v8::internal::Runtime_AllocateInNewSpace(int, v8::internal::Object**, v8::internal::Isolate*) [/nix/store/24gch2y4icg4myc86knsrd8cgif0rpgv-nodejs-10.19.0/bin/node]
+12: 0x3df037edbe1d
+
