@@ -85,7 +85,7 @@ in
 
     systemd.timers.emci-updater = {
       wantedBy = [ "timers.target" ];
-      timerConfig.OnUnitInactiveSec = 10;
+      timerConfig.OnUnitInactiveSec = 60;
     };
   };
 }
