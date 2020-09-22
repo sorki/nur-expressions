@@ -4,8 +4,8 @@ let
   src = super.fetchFromGitHub {
     owner = "sorki";
     repo = "emci";
-    rev = "f565386108a00b2c760cef70eed24129a64aec0a";
-    sha256 = "0h9xfb2kc0536rfrvz41xlz0z222jmg3469vqywpsgn3gkgfhd4n";
+    rev = "dc7c97df5b1e479c2b8e9430e9717db0add5f6ff";
+    sha256 = "1ays7ndxxbpz4641xq656dqyn2jqwlcin0mqgg3fgfinqf40wp4q";
   };
 
   srcX = ~/git/emci;
