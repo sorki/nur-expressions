@@ -5,7 +5,18 @@ with lib;
 let
   dataDir = "/var/lib/emci";
   cfg = config.services.emci;
-
+  emciPath = with pkgs; [
+    haskellPackages.emci
+    nix
+    # better use?
+    #config.nix.package.out
+    coreutils
+    gnutar
+    gzip
+    gitMinimal
+    xz.bin
+    iproute # updater launches git-post-receive-hook-zre
+  ];
 in
 {
   options = {
@@ -33,14 +44,20 @@ in
       description = "emci initialization";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
-      path = [ pkgs.haskellPackages.emci pkgs.nix pkgs.git ];
+      path = emciPath;
       script = ''
         emci -c ${cfg.conf} mirror init
       '';
+
+      environment = config.nix.envVars //
+        { inherit (config.environment.sessionVariables) NIX_PATH;
+        };
+
       serviceConfig = {
         Type = "oneshot";
         User = "emci";
         WorkingDirectory = "${dataDir}";
+        PassEnvironment = "NIX_PATH";
       };
     };
     # XXX: add timer for init or trigger by commit to meta repo
@@ -48,9 +65,14 @@ in
     systemd.services.emci-updater = {
       description = "Periodic emci update";
       wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" "emci-init.target" ];
-      requires = [ "emci-init.target" ];
-      path = [ pkgs.haskellPackages.emci pkgs.nix pkgs.git ];
+      after = [ "network.target" "emci-init.service" ];
+      requires = [ "emci-init.service" ];
+      path = emciPath;
+
+      environment = config.nix.envVars //
+        { inherit (config.environment.sessionVariables) NIX_PATH;
+        };
+
       script = ''
         emci -c ${cfg.conf} mirror update
       '';
