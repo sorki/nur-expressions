@@ -30,6 +30,10 @@ in rec {
     });
   });
 
+  cachix = (self: super: {
+    cachix = super.haskell.packages.ghc884.cachix;
+  });
+
   lib = (self: super: {
     tofu = "0000000000000000000000000000000000000000000000000000";
 
@@ -101,6 +105,7 @@ in rec {
     zre
 
     hnixbot-local
+    cachix
     (magic ./polysemy.nix)
     (import ./polytype.nix)
     (import ./emci.nix)
