@@ -10,5 +10,5 @@ with haskellLib;
   io-streams-haproxy = doJailbreak hsuper.io-streams-haproxy;
 
   # send PR
-  reactive-banana = doJailbreak reactive-banana;
+  reactive-banana = doJailbreak hsuper.reactive-banana;
 })
