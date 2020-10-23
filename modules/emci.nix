@@ -58,6 +58,8 @@ in
         User = "emci";
         WorkingDirectory = "${dataDir}";
         PassEnvironment = "NIX_PATH";
+        Restart = "on-failure";
+        RestartSec = "5min";
       };
     };
     # XXX: add timer for init or trigger by commit to meta repo
