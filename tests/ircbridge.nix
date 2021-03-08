@@ -1,6 +1,6 @@
 import <nixpkgs/nixos/tests/make-test-python.nix> ({pkgs, ...}: rec {
   name = "ircbridge";
-  meta = with pkgs.stdenv.lib.maintainers; {
+  meta = with pkgs.lib.maintainers; {
     maintainers = [ sorki ];
   };
 
