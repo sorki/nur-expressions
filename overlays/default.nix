@@ -77,6 +77,12 @@ in rec {
 
      callCabal2nixOnGitHubPR = fetchArgs: callCabal2nixArgs:
        self.haskellPackages.callCabal2nix "magical" (self.fetchGitHubPR fetchArgs) {};
+
+     haskell = super.haskell // {
+       lib = super.haskell.lib // {
+         callCabal2nixOnGitHubPR = self.callCabal2nixOnGitHubPR;
+       };
+    };
     });
 
   magic = file: (self: super: {
