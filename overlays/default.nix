@@ -113,6 +113,8 @@ in rec {
     hnixbot-local
     cachix
     (magic ./polysemy.nix)
+    (if builtins.pathExists ./wip.nix then magic ./wip.nix else (_: _: {}))
+
     (import ./polytype.nix)
     (import ./emci.nix)
 
