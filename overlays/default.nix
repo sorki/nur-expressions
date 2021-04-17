@@ -95,9 +95,26 @@ in rec {
     });
   });
 
+  magic9 = file: (self: super: {
+    haskell = super.haskell // {
+      packages = super.haskell.packages // {
+        ghc901 = super.haskell.packages.ghc901.override (old: {
+        overrides = super.lib.composeExtensions (old.overrides or (_: _: { }))
+        (import file {
+          pkgs = self;
+          haskellLib = super.haskell.lib;
+        });
+      });
+    };
+
+    };
+  });
+
+
+
   all =
-   hnix-overlay # forces ghc8101 so needs to go first
-   ++
+   # hnix-overlay # forces ghc8101 so needs to go first
+   # ++
    [
     lib
 
@@ -112,26 +129,28 @@ in rec {
 
     hnixbot-local
     cachix
+    (magic9 ./ghc9.nix)
     (magic ./polysemy.nix)
+    (magic ./diagrams.nix)
     (if builtins.pathExists ./wip.nix then magic ./wip.nix else (_: _: {}))
 
     (import ./polytype.nix)
     (import ./emci.nix)
 
     # recent prettyprinter and dhall
-    (magic ./prettyprinter.nix)
 
     # web
     (magic ./web.nix)
     (import ./ghcjs-overlay.nix)
 
     (magic ./graphics.nix)
+    (magic9 ./graphics.nix)
 
     (magic ./jailbreaks.nix)
 
     (self: super: {
       sc3plugins = self.callPackage ./sc3plugins.nix {};
-      supercolliderSC3 = self.supercollider.overrideAttrs (old: {
+      supercollider-sc3 = self.supercollider.overrideAttrs (old: {
         postFixup = ''
           ln -s ${self.sc3plugins}/share/SuperCollider/Extensions/SC3plugins \
             $out/share/SuperCollider/Extensions
@@ -140,7 +159,12 @@ in rec {
             $out/share/SuperCollider/Extensions
         '';
         });
+      doom-emacs = self.callPackage ./doom-emacs.nix {};
+      looking-glass-obs = self.callPackage ./looking-glass-obs.nix {};
+      looking-glass-host = self.callPackage ./looking-glass-host.nix {};
+      looking-glass-module = self.callPackage ./looking-glass-module.nix {};
     })
+
   ]
   ++ ivory-tower-nix
   ;

@@ -2,13 +2,20 @@
 with haskellLib;
 
 (hself: hsuper: {
-  # due to ircbridge
-  # https://github.com/zohl/cereal-time/pull/2
-  cereal-time = markUnbroken (doJailbreak hsuper.cereal-time);
 
-  # due to implicit -> snap, not needed anymore as web stuff is not built by default anymore
-  io-streams-haproxy = doJailbreak hsuper.io-streams-haproxy;
+  # TODO
+  quickspec = markUnbroken (doJailbreak (hsuper.quickspec));
+
+  # TODO pr
+  serialport = markUnbroken (doJailbreak (hsuper.serialport));
 
   # send PR
   reactive-banana = doJailbreak hsuper.reactive-banana;
+
+  # has PRs
+  # cryptohash-sha512 = doJailbreak hsuper.cryptohash-sha512;
+
+  # hip w/o diagrams
+  hip = enableCabalFlag (dontCheck (hsuper.hip.override({ Chart = null; Chart-diagrams = null; }))) "disable-chart";
+
 })

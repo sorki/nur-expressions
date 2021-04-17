@@ -11,11 +11,12 @@ let
   };
 in
 (hself: hsuper: {
-  polysemy = hsuper.callCabal2nix "polysemy" src {};
+  #co-log-polysemy = markUnbroken (doJailbreak hsuper.co-log-polysemy);
+  #polysemy = hsuper.callCabal2nix "polysemy" src {};
 
-  polysemy-plugin = # dontCheck (doJailbreak (
-    hsuper.callCabal2nix "polysemy-plugin" (
-      ''${src}/polysemy-plugin'') {}; # ));
+  #polysemy-plugin = # dontCheck (doJailbreak (
+  #  hsuper.callCabal2nix "polysemy-plugin" (
+  #    ''${src}/polysemy-plugin'') {}; # ));
 
   #polysemy-zoo = doJailbreak hsuper.polysemy-zoo;
 })
