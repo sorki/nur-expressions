@@ -107,6 +107,7 @@ in
       users.users.ircbridge = {
         description = "User for ircbridge";
         group = "ircbridge";
+        isSystemUser = true;
       };
       users.groups.ircbridge = {};
 
