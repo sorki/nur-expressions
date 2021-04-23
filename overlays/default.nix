@@ -18,7 +18,7 @@ in rec {
   ircbridge = import ./ircbridge-overlay.nix;
 
   # XXX: temp
-  hnixbot-local = import ./hnixbot-local.nix;
+  xnand-local = import ./xnand-local.nix;
 
   # template
   template = (self: super: {
@@ -127,7 +127,7 @@ in rec {
     ircbridge
     zre
 
-    hnixbot-local
+    xnand-local
     cachix
     (magic9 ./ghc9.nix)
     (magic ./polysemy.nix)
