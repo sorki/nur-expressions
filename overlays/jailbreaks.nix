@@ -3,6 +3,8 @@ with haskellLib;
 
 (hself: hsuper: {
 
+  co-log-polysemy = markUnbroken (doJailbreak (hsuper.co-log-polysemy));
+
   # TODO
   quickspec = markUnbroken (doJailbreak (hsuper.quickspec));
 

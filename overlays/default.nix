@@ -138,6 +138,7 @@ in rec {
     (import ./emci.nix)
 
     # recent prettyprinter and dhall
+    # (magic ./prettyprinter.nix)
 
     # web
     (magic ./web.nix)
@@ -165,6 +166,7 @@ in rec {
       looking-glass-module = self.callPackage ./looking-glass-module.nix {};
     })
 
+    (import /home/srk/git/agenix/overlay.nix)
   ]
   ++ ivory-tower-nix
   ;
