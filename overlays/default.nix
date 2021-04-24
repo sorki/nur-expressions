@@ -143,6 +143,7 @@ in rec {
     # web
     (magic ./web.nix)
     (import ./ghcjs-overlay.nix)
+    (import ./ghc-arm-overlay.nix)
 
     (magic ./graphics.nix)
     (magic9 ./graphics.nix)
