@@ -30,10 +30,6 @@ in rec {
     });
   });
 
-  cachix = (self: super: {
-    cachix = super.haskell.packages.ghc884.cachix;
-  });
-
   lib = (self: super: {
     tofu = "0000000000000000000000000000000000000000000000000000";
 
@@ -128,7 +124,6 @@ in rec {
     zre
 
     xnand-local
-    cachix
     (magic9 ./ghc9.nix)
     (magic ./polysemy.nix)
     (magic ./diagrams.nix)
