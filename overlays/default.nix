@@ -167,7 +167,9 @@ in rec {
       looking-glass-module = self.callPackage ./looking-glass-module.nix {};
     })
 
-    (import /home/srk/git/agenix/overlay.nix)
+    (if builtins.pathExists /home/srk/git/agenix/overlay.nix
+     then (import /home/srk/git/agenix/overlay.nix)
+     else (_: _: {}))
   ]
   ++ ivory-tower-nix
   ;
