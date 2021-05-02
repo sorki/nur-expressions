@@ -109,10 +109,12 @@ in rec {
     };
   });
 
-    };
+  overlayArm = file: (self: super: {
+    ghcarm = super.ghcarm.override (old: {
+      overrides = super.lib.composeExtensions (old.overrides or (_: _: { }))
+      (import file);
+    });
   });
-
-
 
   all =
    # hnix-overlay # forces ghc8101 so needs to go first
@@ -127,6 +129,7 @@ in rec {
 
     git-post-receive
     (overlay "${(syspkgs.callPackage ./src/ircbridge.nix {})}/overlay.nix")
+    (overlayArm "${(syspkgs.callPackage ./src/ircbridge.nix {})}/overlay.nix")
     zre
 
     (magic9 ./ghc9.nix)
