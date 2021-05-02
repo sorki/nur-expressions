@@ -173,15 +173,21 @@ in rec {
     })
     (magicArm ({ pkgs, haskellLib }:
       (hself: hsuper:
-        { hnix-store-experiments =
-            hsuper.callCabal2nix
-              "hnix-store-experiments"
-              (syspkgs.callPackage ./src/hnix-store-experiments.nix {})
-              {};
+        {
           factoids =
             hsuper.callCabal2nix
               "factoids"
               (syspkgs.callPackage ./src/factoids.nix {})
+              {};
+          hnix-store-experiments =
+            hsuper.callCabal2nix
+              "hnix-store-experiments"
+              (syspkgs.callPackage ./src/hnix-store-experiments.nix {})
+              {};
+          ircbot =
+            hsuper.callCabal2nix
+              "ircbot"
+              (syspkgs.callPackage ./src/ircbot.nix {})
               {};
         }
       )
