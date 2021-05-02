@@ -160,6 +160,7 @@ in rec {
     # ** arm
     (import ./ghc-arm-overlay.nix)
     (overlayArm "${(syspkgs.callPackage ./src/ircbridge.nix {})}/overlay.nix")
+    (overlayArm "${(syspkgs.callPackage ./src/hnix-store.nix {})}/overlay.nix")
     (magicArm ({ pkgs, haskellLib }:
       (hself: hsuper:
         { hnix-store-experiments =
