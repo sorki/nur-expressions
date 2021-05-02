@@ -165,12 +165,12 @@ in rec {
         { hnix-store-experiments =
             hsuper.callCabal2nix
               "hnix-store-experiments"
-              (syspkgs.callPackage ./src/hnix-store-experiments.nix)
+              (syspkgs.callPackage ./src/hnix-store-experiments.nix {})
               {};
           factoids =
             hsuper.callCabal2nix
               "factoids"
-              (syspkgs.callPackage ./src/factoids.nix)
+              (syspkgs.callPackage ./src/factoids.nix {})
               {};
         }
       )
