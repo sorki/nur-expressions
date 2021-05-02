@@ -1,3 +1,4 @@
+# * haskell overlay collection
 let
   syspkgs = import <nixpkgs> {};
   # pin these at some point
@@ -152,11 +153,11 @@ in rec {
     # recent prettyprinter and dhall
     # (magic ./prettyprinter.nix)
 
-    # web
+    # ** web
     (magic ./web.nix)
     (import ./ghcjs-overlay.nix)
 
-    # arm
+    # ** arm
     (import ./ghc-arm-overlay.nix)
     (overlayArm "${(syspkgs.callPackage ./src/ircbridge.nix {})}/overlay.nix")
     (magicArm ({ pkgs, haskellLib }:
