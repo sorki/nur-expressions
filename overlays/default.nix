@@ -1,4 +1,5 @@
 let
+  syspkgs = import <nixpkgs> {};
   # pin these at some point
   hnSrc = "https://github.com/sorki/hnix-overlay/archive/master.tar.gz";
   itnSrc = "https://github.com/HaskellEmbedded/ivory-tower-nix/archive/master.tar.gz";
@@ -15,8 +16,6 @@ in rec {
   # hot
   zre = import ./zre.nix;
   git-post-receive = import ./git-post-receive-overlay.nix;
-  ircbridge = import ./ircbridge-overlay.nix;
-
 
   # template
   template = (self: super: {
@@ -89,6 +88,13 @@ in rec {
     });
   });
 
+  overlay = file: (self: super: {
+    haskellPackages = super.haskellPackages.override (old: {
+      overrides = super.lib.composeExtensions (old.overrides or (_: _: { }))
+      (import file);
+    });
+  });
+
   magic9 = file: (self: super: {
     haskell = super.haskell // {
       packages = super.haskell.packages // {
@@ -118,7 +124,7 @@ in rec {
     hs-git
 
     git-post-receive
-    ircbridge
+    (overlay "${(syspkgs.callPackage ./src/ircbridge.nix {})}/overlay.nix")
     zre
 
     (magic9 ./ghc9.nix)
