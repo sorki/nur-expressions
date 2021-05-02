@@ -1,12 +1,12 @@
 self: super:
 let
-  src = pkgs.fetchFromGitHub {
+  src = super.fetchFromGitHub {
     owner = "sorki";
     repo = "xnand";
     rev = "cc186b7d96a4ea2f0fb18cb21f730be5d5776693";
     sha256 = "1y16dx0kbsca57h4ry293x4ykcb010r0rqfhvcra5vavyf5x8x47";
   };
-  src-factoids = pkgs.fetchFromGitHub {
+  src-factoids = super.fetchFromGitHub {
     owner = "sorki";
     repo = "factoids";
     rev = "ec144bc6c6a4cf6b9541a36a845e4f4df2158783";
