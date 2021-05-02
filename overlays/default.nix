@@ -100,12 +100,14 @@ in rec {
       packages = super.haskell.packages // {
         ghc901 = super.haskell.packages.ghc901.override (old: {
         overrides = super.lib.composeExtensions (old.overrides or (_: _: { }))
-        (import file {
-          pkgs = self;
-          haskellLib = super.haskell.lib;
+          (import file {
+            pkgs = self;
+            haskellLib = super.haskell.lib;
+          });
         });
-      });
+      };
     };
+  });
 
     };
   });
