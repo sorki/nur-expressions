@@ -109,6 +109,16 @@ in rec {
     };
   });
 
+  magicArm = expr: (self: super: {
+    ghcarm = super.ghcarm.override (old: {
+      overrides = super.lib.composeExtensions (old.overrides or (_: _: { }))
+      (expr {
+        pkgs = self;
+        haskellLib = super.haskell.lib;
+      });
+    });
+  });
+
   overlayArm = file: (self: super: {
     ghcarm = super.ghcarm.override (old: {
       overrides = super.lib.composeExtensions (old.overrides or (_: _: { }))
@@ -149,6 +159,16 @@ in rec {
     # arm
     (import ./ghc-arm-overlay.nix)
     (overlayArm "${(syspkgs.callPackage ./src/ircbridge.nix {})}/overlay.nix")
+    (magicArm ({ pkgs, haskellLib }:
+      (hself: hsuper:
+        { hnix-store-experiments =
+            hsuper.callCabal2nix
+              "hnix-store-experiments"
+              (syspkgs.callPackage ./src/hnix-store-experiments.nix)
+              {};
+        }
+      )
+    ))
 
     (magic ./graphics.nix)
     (magic9 ./graphics.nix)
