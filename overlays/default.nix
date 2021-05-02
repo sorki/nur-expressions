@@ -17,8 +17,6 @@ in rec {
   git-post-receive = import ./git-post-receive-overlay.nix;
   ircbridge = import ./ircbridge-overlay.nix;
 
-  # XXX: temp
-  xnand-local = import ./xnand-local.nix;
 
   # template
   template = (self: super: {
@@ -123,7 +121,6 @@ in rec {
     ircbridge
     zre
 
-    xnand-local
     (magic9 ./ghc9.nix)
     (magic ./polysemy.nix)
     (magic ./diagrams.nix)
@@ -165,6 +162,10 @@ in rec {
     (if builtins.pathExists /home/srk/git/agenix/overlay.nix
      then (import /home/srk/git/agenix/overlay.nix)
      else (_: _: {}))
+
+    (if builtins.pathExists /home/srk/git/xnand
+     then (import ./xnand-local.nix)
+     else (import ./xnand.nix))
   ]
   ++ ivory-tower-nix
   ;
