@@ -129,7 +129,6 @@ in rec {
 
     git-post-receive
     (overlay "${(syspkgs.callPackage ./src/ircbridge.nix {})}/overlay.nix")
-    (overlayArm "${(syspkgs.callPackage ./src/ircbridge.nix {})}/overlay.nix")
     zre
 
     (magic9 ./ghc9.nix)
@@ -146,7 +145,10 @@ in rec {
     # web
     (magic ./web.nix)
     (import ./ghcjs-overlay.nix)
+
+    # arm
     (import ./ghc-arm-overlay.nix)
+    (overlayArm "${(syspkgs.callPackage ./src/ircbridge.nix {})}/overlay.nix")
 
     (magic ./graphics.nix)
     (magic9 ./graphics.nix)
