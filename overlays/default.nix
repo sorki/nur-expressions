@@ -189,6 +189,11 @@ in rec {
               "ircbot"
               (syspkgs.callPackage ./src/ircbot.nix {})
               {};
+          xnand =
+            hsuper.callCabal2nix
+              "xnand"
+              (syspkgs.callPackage ./src/xnand.nix {})
+              {};
         }
       )
     ))
