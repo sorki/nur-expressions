@@ -1,5 +1,6 @@
 self: super:
 let
+  # FIXME for arm this is using src/xnand.nix, duplicate
   src = super.fetchFromGitHub {
     owner = "sorki";
     repo = "xnand";

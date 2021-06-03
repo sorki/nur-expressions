@@ -2,6 +2,6 @@
 pkgs.fetchFromGitHub {
   owner = "sorki";
   repo = "xnand";
-  rev = "cc186b7d96a4ea2f0fb18cb21f730be5d5776693";
-  sha256 = "1y16dx0kbsca57h4ry293x4ykcb010r0rqfhvcra5vavyf5x8x47";
+  rev = "11b007568dcd8dfbbb0a7a7151be4441c93c19cb";
+  sha256 = "1s5v2p5vb8kx9zx9y8p9igqgghb7jpi1jzxvr9pdxwiy76wfaw2f";
 }
