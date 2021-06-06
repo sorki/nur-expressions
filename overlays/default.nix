@@ -138,7 +138,7 @@ in rec {
     ircbot
     hs-git
 
-    git-post-receive
+    (overlay "${(syspkgs.callPackage ./src/git-post-receive.nix {})}/overlay.nix")
     (overlay "${(syspkgs.callPackage ./src/ircbridge.nix {})}/overlay.nix")
     zre
 
@@ -160,6 +160,7 @@ in rec {
     # ** arm
     (import ./ghc-arm-overlay.nix)
     (overlayArm "${(syspkgs.callPackage ./src/ircbridge.nix {})}/overlay.nix")
+    (overlayArm "${(syspkgs.callPackage ./src/git-post-receive.nix {})}/overlay.nix")
     # you wish
     # (overlayArm "${(syspkgs.callPackage ./src/hnix-store.nix {})}/overlay.nix")
     (self: super: {
