@@ -174,6 +174,11 @@ in rec {
     (magicArm ({ pkgs, haskellLib }:
       (hself: hsuper:
         {
+          emci =
+            hsuper.callCabal2nix
+              "emci"
+              (syspkgs.callPackage ./src/emci.nix {})
+              {};
           factoids =
             hsuper.callCabal2nix
               "factoids"
